@@ -27,6 +27,7 @@ from sdb import parser
 from sdb import target
 from sdb.error import CommandArgumentsError, CommandNotFoundError
 from sdb.command import Address, Cast, Command, get_registered_commands
+from security import safe_command
 
 
 def massage_input_and_call(
@@ -134,7 +135,7 @@ def invoke(first_input: Iterable[drgn.Object],
         # re-arrange our std_out.
         #
         # pylint: disable=consider-using-with
-        shell_proc = subprocess.Popen(shell_cmd,
+        shell_proc = safe_command.run(subprocess.Popen, shell_cmd,
                                       shell=True,
                                       stdin=subprocess.PIPE,
                                       encoding="utf-8")
