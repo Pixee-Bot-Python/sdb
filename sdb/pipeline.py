@@ -135,8 +135,7 @@ def invoke(first_input: Iterable[drgn.Object],
         #
         # pylint: disable=consider-using-with
         shell_proc = subprocess.Popen(shell_cmd,
-                                      shell=True,
-                                      stdin=subprocess.PIPE,
+                                      shell=False, stdin=subprocess.PIPE,
                                       encoding="utf-8")
         old_stdout = sys.stdout
         #
